@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Event\EventInterface;
+use PhpParser\Node\Stmt\TryCatch;
 
 /**
  * Users Controller
@@ -25,10 +26,10 @@ class UsersController extends AppController
     public function index()
     {
         $loggedin_user_role= $this->currentLoggedinUserRole();
-        // if ($loggedin_user_role!='admin'){            
-        //     $this->Flash->info(__('Admin priviledges required to access all users'));
-        //     return $this->redirect(['action' => 'profile']);
-        // }
+        if ($loggedin_user_role!='admin'){            
+            $this->Flash->info(__('Admin priviledges required to access all users'));
+            return $this->redirect(['action' => 'profile']);
+        }
         $this->paginate = [
             'contain' => ['Departments', 'Roles'],
         ];
@@ -39,6 +40,11 @@ class UsersController extends AppController
 
     public function view($id = null)
     {
+        $loggedin_user_role= $this->currentLoggedinUserRole();
+        if ($loggedin_user_role!='admin'){            
+            $this->Flash->info(__('Admin priviledges required to access all users'));
+            return $this->redirect(['action' => 'profile']);
+        }
         $user = $this->Users->get($id, [
             'contain' => ['Departments', 'Roles'],
         ]);
@@ -48,6 +54,11 @@ class UsersController extends AppController
 
     public function add()
     {
+        $loggedin_user_role= $this->currentLoggedinUserRole();
+        if ($loggedin_user_role!='admin'){            
+            $this->Flash->info(__('Admin priviledges required to access all users'));
+            return $this->redirect(['action' => 'profile']);
+        }
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             
@@ -69,6 +80,11 @@ class UsersController extends AppController
 
     public function edit($id = null)
     {
+        $loggedin_user_role= $this->currentLoggedinUserRole();
+        if ($loggedin_user_role!='admin'){            
+            $this->Flash->info(__('Admin priviledges required to access all users'));
+            return $this->redirect(['action' => 'profile']);
+        }
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
@@ -88,6 +104,11 @@ class UsersController extends AppController
 
     public function delete($id = null)
     {
+        $loggedin_user_role= $this->currentLoggedinUserRole();
+        if ($loggedin_user_role!='admin'){            
+            $this->Flash->info(__('Admin priviledges required to access all users'));
+            return $this->redirect(['action' => 'profile']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
@@ -130,6 +151,17 @@ class UsersController extends AppController
 
     public function reset(){
         $this->viewBuilder()->setLayout('plain');
+        $result = $this->Authentication->getResult();
+
+        if ($result->isValid()) {
+            // redirect to /articles after login success
+            $redirect = $this->request->getQuery('redirect', [
+                'controller' => 'Dashboard',
+                'action' => 'index',
+            ]);
+            
+            return $this->redirect($redirect);
+        }
     }
 
     public function passreset($id = null)
@@ -169,6 +201,11 @@ class UsersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            if($this->request->getData()['password']!=$this->request->getData()['retype_password']){
+                $this->Flash->error(__('Password mismatch. Check your input. Enter your new password and save'));
+
+                return $this->redirect(['action' => 'changepassword']); 
+            }
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Password changed successfully.'));
 
