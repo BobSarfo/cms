@@ -1,0 +1,7 @@
+.dataTables_filter{
+    display: none !important;
+}
+
+#kt_subscriptions_table_filter{
+    display: none !important;
+}
