@@ -1,7 +1,7 @@
 <?php 
 ?>
 
-<div class="col-xxl-4">
+<div class="">
 	<!--begin::Mixed Widget 2-->
 	<div class="card card-xxl-stretch">
 		<!--begin::Header-->
@@ -37,7 +37,7 @@
 							<a href="#" class="text-warning fw-bold fs-6">Total Agriculture Value Chain Actors</a>
 						</div>
 						<div class="d-flex align-items-center mr-25">
-							<a href="#" class="text-warning fw-bold fs-6 mt-2"><h1  class="text-warning"><?= h($actorCount0) ?></h1></a>
+							<a href="#" class="text-warning fw-bold fs-6 mt-2"><h1  class="text-warning"><?= h($actorCount) ?></h1></a>
 						</div>
 					</div>
 					<!--end::Col-->
@@ -95,10 +95,10 @@
 								</svg>
 							</span>
 							<!--end::Svg Icon-->
-							<a href="#" class="text-primary fw-bold fs-6 mt-2"> Prefer Stat </a>
+							<a href="#" class="text-primary fw-bold fs-6 mt-2"> Women Agri Value Chain Actors</a>
 						</div>
 						<div class="d-flex align-items-center mr-25">							
-							<a href="#" class="text-primary fw-bold fs-6 mt-2"><h1  class="text-primary">4</h1></a>
+							<a href="#" class="text-primary fw-bold fs-6 mt-2"><h1  class="text-primary"><?= h($womenActors) ?></h1></a>
 						</div>
 					</div>
 					<!--end::Col-->
@@ -116,7 +116,7 @@
 							<a href="#" class="text-primary fw-bold fs-6 mt-2">Women Led Business</a>
 						</div>
 						<div class="d-flex align-items-center mr-25">							
-							<a href="#" class="text-primary fw-bold fs-6 mt-2"><h1  class="text-primary">9</h1></a>
+							<a href="#" class="text-primary fw-bold fs-6 mt-2"><h1 class="text-primary"><?= h($womenEnterprises) ?></h1></a>
 						</div>
 					</div>
 					<!--end::Col-->

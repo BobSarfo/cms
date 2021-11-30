@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Event\EventInterface;
+
 /**
  * Departments Controller
  *
@@ -11,6 +13,9 @@ namespace App\Controller;
  */
 class DepartmentsController extends AppController
 {
+
+   
+
     /**
      * Index method
      *
@@ -46,6 +51,12 @@ class DepartmentsController extends AppController
      */
     public function add()
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $department = $this->Departments->newEmptyEntity();
         if ($this->request->is('post')) {
             $department = $this->Departments->patchEntity($department, $this->request->getData());
@@ -68,6 +79,12 @@ class DepartmentsController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $department = $this->Departments->get($id, [
             'contain' => [],
         ]);
@@ -92,6 +109,12 @@ class DepartmentsController extends AppController
      */
     public function delete($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Super Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $department = $this->Departments->get($id);
         if ($this->Departments->delete($department)) {

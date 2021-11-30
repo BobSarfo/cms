@@ -29,12 +29,8 @@
                                                                                 <tr>
                         <th  class="text-gray-400 "><?= __('Name') ?></th>
                         <td  class="text-gray-800" ><?= h($community->name) ?></td>
-                    </tr > 
-                                                                                                                                                                    <tr>
-                        <th class="text-gray-400 "><?= __('Id') ?></th>
-                        <td class="text-gray-800"><?= $this->Number->format($community->id) ?></td>
-                    </tr>
-                                                                                                                </table>
+                    </tr >                  
+                </table>
                 </div>
                 </div>
                                                                                                                                         <div class="d-flex flex-wrap py-5">
@@ -45,46 +41,26 @@
                             <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
                             
                                 <tr class="border-bottom border-gray-200 text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                                                        <th class="min-w-125px"><?= __('Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Name') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Date Of Birth') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Sex Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Disability Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Sector Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Phone') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Other Phone') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Community Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Suburb') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Registed With RGD') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Registed With Assembly') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Production Scale Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Other Related Activity') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Additional Comments') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Created') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Modified') ?></th>
-                                                                        <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
+                                <th class="min-w-125px"><?= __('#') ?></th>
+                                    <th class="min-w-125px"><?= __('Name') ?></th>
+                                    <th class="min-w-125px"><?= __('Date Of Birth') ?></th>                                    
+                                    <th class="min-w-125px"><?= __('Phone') ?></th>
+                                    <th class="min-w-125px"><?= __('Suburb') ?></th>
+                                    <th class="min-w-125px"><?= __('Other Related Activity') ?></th>
+                                    <th class="min-w-125px"><?= __('Additional Comments') ?></th>
+                                    <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
                                 </tr>
+                                <?php $i=0?>
                                 <?php foreach ($community->actors as $actors) : ?>
                                 <tr>
-                                                                        <td><?= h($actors->id) ?></td>
-                                                                        <td><?= h($actors->name) ?></td>
-                                                                        <td><?= h($actors->date_of_birth) ?></td>
-                                                                        <td><?= h($actors->sex_id) ?></td>
-                                                                        <td><?= h($actors->disability_id) ?></td>
-                                                                        <td><?= h($actors->sector_id) ?></td>
-                                                                        <td><?= h($actors->phone) ?></td>
-                                                                        <td><?= h($actors->other_phone) ?></td>
-                                                                        <td><?= h($actors->community_id) ?></td>
-                                                                        <td><?= h($actors->suburb) ?></td>
-                                                                        <td><?= h($actors->registed_with_RGD) ?></td>
-                                                                        <td><?= h($actors->registed_with_Assembly) ?></td>
-                                                                        <td><?= h($actors->production_scale_id) ?></td>
-                                                                        <td><?= h($actors->other_related_activity) ?></td>
-                                                                        <td><?= h($actors->additional_comments) ?></td>
-                                                                        <td><?= h($actors->created) ?></td>
-                                                                        <td><?= h($actors->modified) ?></td>
-                                                                                                            <td class="text-end min-w-125px actions">
-                                        <!--begin::Action-->
+                                <td><?= h(++$i) ?></td>
+                                    <td><?= h($actors->name) ?></td>
+                                    <td><?= h($actors->date_of_birth) ?></td>
+                                    <td><?= h($actors->phone) ?></td>
+                                    <td><?= h($actors->suburb) ?></td>
+                                    <td><?= h($actors->other_related_activity) ?></td>
+                                    <td><?= h($actors->additional_comments) ?></td>
+                                    <!--begin::Action-->
                                         <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
                                             <span class="svg-icon svg-icon-3">
@@ -131,37 +107,28 @@
                             <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
                             
                                 <tr class="border-bottom border-gray-200 text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                                                        <th class="min-w-125px"><?= __('Id') ?></th>
+                                                                        <th class="min-w-125px"><?= __('#') ?></th>
                                                                         <th class="min-w-125px"><?= __('Name') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Enterprise Type Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Community Id') ?></th>
                                                                         <th class="min-w-125px"><?= __('Suburb') ?></th>
                                                                         <th class="min-w-125px"><?= __('Date Of Establishment') ?></th>
                                                                         <th class="min-w-125px"><?= __('Phone') ?></th>
                                                                         <th class="min-w-125px"><?= __('Number Of Employees') ?></th>
                                                                         <th class="min-w-125px"><?= __('Email') ?></th>
                                                                         <th class="min-w-125px"><?= __('RegistrationNo') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Created') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Modified') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Other Phone') ?></th>
                                                                         <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
                                 </tr>
+                                <?php $j=0 ?>
                                 <?php foreach ($community->enterprises as $enterprises) : ?>
                                 <tr>
-                                                                        <td><?= h($enterprises->id) ?></td>
+                                                                        <td><?= h(++$j) ?></td>
                                                                         <td><?= h($enterprises->name) ?></td>
-                                                                        <td><?= h($enterprises->enterprise_type_id) ?></td>
-                                                                        <td><?= h($enterprises->community_id) ?></td>
                                                                         <td><?= h($enterprises->suburb) ?></td>
                                                                         <td><?= h($enterprises->date_of_establishment) ?></td>
                                                                         <td><?= h($enterprises->phone) ?></td>
                                                                         <td><?= h($enterprises->number_of_employees) ?></td>
                                                                         <td><?= h($enterprises->email) ?></td>
                                                                         <td><?= h($enterprises->registrationNo) ?></td>
-                                                                        <td><?= h($enterprises->created) ?></td>
-                                                                        <td><?= h($enterprises->modified) ?></td>
-                                                                        <td><?= h($enterprises->other_phone) ?></td>
-                                                                                                            <td class="text-end min-w-125px actions">
+                                <td class="text-end min-w-125px actions">
                                         <!--begin::Action-->
                                         <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -209,21 +176,16 @@
                             <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
                             
                                 <tr class="border-bottom border-gray-200 text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                                                        <th class="min-w-125px"><?= __('Id') ?></th>
+                                                                        <th class="min-w-125px"><?= __('#') ?></th>
                                                                         <th class="min-w-125px"><?= __('Name') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Community Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Created') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Modified') ?></th>
                                                                         <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
                                 </tr>
+                                <?php $k=0 ?>
                                 <?php foreach ($community->organisations as $organisations) : ?>
                                 <tr>
-                                                                        <td><?= h($organisations->id) ?></td>
-                                                                        <td><?= h($organisations->name) ?></td>
-                                                                        <td><?= h($organisations->community_id) ?></td>
-                                                                        <td><?= h($organisations->created) ?></td>
-                                                                        <td><?= h($organisations->modified) ?></td>
-                                                                                                            <td class="text-end min-w-125px actions">
+                                    <td><?= h(++$k) ?></td>
+                                    <td><?= h($organisations->name) ?></td>
+                                <td class="text-end min-w-125px actions">
                                         <!--begin::Action-->
                                         <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -263,7 +225,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                                </div>
+            </div>
         </div>
     </div>
 </div>

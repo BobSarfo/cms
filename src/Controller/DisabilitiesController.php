@@ -46,6 +46,12 @@ class DisabilitiesController extends AppController
      */
     public function add()
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $disability = $this->Disabilities->newEmptyEntity();
         if ($this->request->is('post')) {
             $disability = $this->Disabilities->patchEntity($disability, $this->request->getData());
@@ -68,6 +74,12 @@ class DisabilitiesController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $disability = $this->Disabilities->get($id, [
             'contain' => [],
         ]);
@@ -92,6 +104,12 @@ class DisabilitiesController extends AppController
      */
     public function delete($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if (  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Super Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $disability = $this->Disabilities->get($id);
         if ($this->Disabilities->delete($disability)) {
