@@ -215,27 +215,27 @@ $cakeDescription = 'Shama District';
 																</a>
 															</div>
 															<div class="menu-item">
-																<a class="menu-link py-3" href="../../demo1/dist/apps/subscriptions/list.html">
+																<a class="menu-link py-3" href="/actorsenterprises">
 																	<span class="menu-bullet">
 																		<span class="bullet bullet-dot"></span>
 																	</span>
-																	<span class="menu-title">Subscription List</span>
+																	<span class="menu-title"> Actors Enterprises</span>
 																</a>
 															</div>
 															<div class="menu-item">
-																<a class="menu-link py-3" href="../../demo1/dist/apps/subscriptions/add.html">
+																<a class="menu-link py-3" href="/actorsorganisations">
 																	<span class="menu-bullet">
 																		<span class="bullet bullet-dot"></span>
 																	</span>
-																	<span class="menu-title">Add Subscription</span>
+																	<span class="menu-title">Actors Organisations</span>
 																</a>
 															</div>
 															<div class="menu-item">
-																<a class="menu-link py-3" href="../../demo1/dist/apps/subscriptions/view.html">
+																<a class="menu-link py-3" href="/actorsvaluechainroles">
 																	<span class="menu-bullet">
 																		<span class="bullet bullet-dot"></span>
 																	</span>
-																	<span class="menu-title">View Subscription</span>
+																	<span class="menu-title">Actors Value Chain Roles</span>
 																</a>
 															</div>
 														</div>
