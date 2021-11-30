@@ -50,6 +50,7 @@
                                     <th class="min-w-125px"><?= __('Additional Comments') ?></th>
                                     <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
                                  </tr>
+                                 <? $i=0 ?>
                                 <?php foreach ($sector->actors as $actors) : ?>
                                 <tr>
                                                     <td><?= h(++$i) ?></td>

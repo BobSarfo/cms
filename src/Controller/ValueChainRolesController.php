@@ -19,7 +19,6 @@ class ValueChainRolesController extends AppController
     public function index()
     {
         $valueChainRoles = $this->paginate($this->ValueChainRoles);
-
         $this->set(compact('valueChainRoles'));
     }
 
@@ -46,6 +45,12 @@ class ValueChainRolesController extends AppController
      */
     public function add()
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $valueChainRole = $this->ValueChainRoles->newEmptyEntity();
         if ($this->request->is('post')) {
             $valueChainRole = $this->ValueChainRoles->patchEntity($valueChainRole, $this->request->getData());
@@ -69,6 +74,12 @@ class ValueChainRolesController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $valueChainRole = $this->ValueChainRoles->get($id, [
             'contain' => ['Actors'],
         ]);
@@ -94,6 +105,12 @@ class ValueChainRolesController extends AppController
      */
     public function delete($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ( $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Super Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $valueChainRole = $this->ValueChainRoles->get($id);
         if ($this->ValueChainRoles->delete($valueChainRole)) {

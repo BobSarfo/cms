@@ -22,7 +22,7 @@ class EnterpriseValueChainRolesController extends AppController
             'contain' => ['Enterprises', 'ValueChainRoles'],
         ];
         $enterpriseValueChainRoles = $this->paginate($this->EnterpriseValueChainRoles);
-
+       
         $this->set(compact('enterpriseValueChainRoles'));
     }
 
