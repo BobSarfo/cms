@@ -48,7 +48,7 @@ class UsersController extends AppController
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
         if ($loggedin_user_role!='super'){            
-            $this->Flash->info(__('Admin priviledges required to access all users'));
+            $this->Flash->info(__('Admin priviledges required to view user details'));
             return $this->redirect(['action' => 'profile']);
         }
         $user = $this->Users->get($id, [
@@ -64,7 +64,7 @@ class UsersController extends AppController
         $loggedin_user_role=$session->read('auth-role');
         if ( $loggedin_user_role!='super'){            
             $this->Flash->info(__('Admin priviledges required to access all users'));
-            return $this->redirect(['action' => 'profile']);
+            return $this->redirect(['action' => 'index']);
         }
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -90,8 +90,8 @@ class UsersController extends AppController
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
         if ($loggedin_user_role!='super'){            
-            $this->Flash->info(__('Admin priviledges required to access all users'));
-            return $this->redirect(['action' => 'profile']);
+            $this->Flash->info(__('Admin priviledges required to edit users'));
+            return $this->redirect(['action' => 'index']);
         }
         $user = $this->Users->get($id, [
             'contain' => [],
@@ -115,8 +115,8 @@ class UsersController extends AppController
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
         if ($loggedin_user_role!='super'){            
-            $this->Flash->info(__('Admin priviledges required to access all users'));
-            return $this->redirect(['action' => 'profile']);
+            $this->Flash->error(__('Admin priviledges required delete users'));
+            return $this->redirect(['action' => 'index']);
         }
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);

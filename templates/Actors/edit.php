@@ -20,12 +20,15 @@
             <legend  class="fw-bolder"><?= __('Edit Actor') ?></legend>
         </div>
         <div class="card-toolbar"> 
+            
+        <?php if($loggedin_user_role==="super" ): ?>    
 
             <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $actor->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $actor->id), 'class' => 'btn btn-light-primary mx-2']
+                ['confirm' => __('Are you sure you want to delete # {0}?', $actor->id), 'class' => 'btn btn-light-danger mx-2']
             )?>
+            <?php endif ?>
         <?= $this->Html->link(__('List Actors'), ['action' => 'index'], ['class' => 'btn btn-light-primary mx-2']) ?>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Enterprise[]|\Cake\Collection\CollectionInterface $enterprises
+ * @var \App\Model\Entity\EnterpriseValueChainRole[]|\Cake\Collection\CollectionInterface $enterpriseValueChainRoles
  */
 ?>
 <div id="kt_content_container" class="container-xxl">
@@ -11,7 +11,7 @@
 
 
     <!--begin::Card header-->        
-        <h3 class="card-header border-0 pt-6"><?= __('Enterprises') ?></h3>
+        <h3 class="card-header border-0 pt-6"><?= __('Enterprise Value Chain Roles') ?></h3>
 		<div class = "card-header border-0 pt-0">
 			<!--begin::Card title-->
 			<div class="card-title">
@@ -42,7 +42,7 @@
                         <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
                         <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
                     </svg>
-                     <?= $this->Html->link(__('New Enterprise'), ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
+                     <?= $this->Html->link(__('New Enterprise Value Chain Role'), ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
    					</span>
 					<!--end::Add subscription-->
 				</div>
@@ -64,40 +64,17 @@
             <table class="table align-middle table-row-dashed fs-6 gy-2" id="kt_subscriptions_table">
                 <thead>
                     <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-                                                <th><?= $this->Paginator->sort('#') ?></th>
-                                                <th><?= $this->Paginator->sort('name') ?></th>
-                                                <th><?= $this->Paginator->sort('enterprise_type_id') ?></th>
-                                                <th><?= $this->Paginator->sort('community_id') ?></th>
-                                                <th><?= $this->Paginator->sort('suburb') ?></th>
-                                                <th><?= $this->Paginator->sort('date_of_establishment') ?></th>
-                                                <th><?= $this->Paginator->sort('phone') ?></th>
-                                                <th><?= $this->Paginator->sort('number_of_employees') ?></th>
-                                                <th><?= $this->Paginator->sort('email') ?></th>
-                                                <th><?= $this->Paginator->sort('registrationNo') ?></th>
-                                                <th><?= $this->Paginator->sort('created') ?></th>
-                                                <th><?= $this->Paginator->sort('modified') ?></th>
-                                                <th><?= $this->Paginator->sort('other_phone') ?></th>
+                                                <th><?= $this->Paginator->sort('enterprise_id') ?></th>
+                                                <th><?= $this->Paginator->sort('value_chain_role_id') ?></th>
                                                 <th class="actions text-end"><?= __('Actions') ?></th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 fw-bold">
-                    <?php $i=0?>
-                    <?php foreach ($enterprises as $enterprise): ?>
+                    <?php foreach ($enterpriseValueChainRoles as $enterpriseValueChainRole): ?>
                     <tr>
-                        <td><?= $this->Number->format(++$i) ?></td>
-                        <td><?= h($enterprise->name) ?></td>
-                        <td><?= $enterprise->has('enterprise_type') ? $this->Html->link($enterprise->enterprise_type->name, ['controller' => 'EnterpriseTypes', 'action' => 'view', $enterprise->enterprise_type->id]) : '' ?></td>
-                        <td><?= $enterprise->has('community') ? $this->Html->link($enterprise->community->name, ['controller' => 'Communities', 'action' => 'view', $enterprise->community->id]) : '' ?></td>
-                        <td><?= h($enterprise->suburb) ?></td>
-                        <td><?= h($enterprise->date_of_establishment) ?></td>
-                        <td><?= h($enterprise->phone) ?></td>
-                        <td><?= $this->Number->format($enterprise->number_of_employees) ?></td>
-                        <td><?= h($enterprise->email) ?></td>
-                        <td><?= h($enterprise->registrationNo) ?></td>
-                        <td><?= h($enterprise->created) ?></td>
-                        <td><?= h($enterprise->modified) ?></td>
-                        <td><?= h($enterprise->other_phone) ?></td>
-<!--begin::Action=-->
+                                                                                                                                                                                                <td><?= $enterpriseValueChainRole->has('enterprise') ? $this->Html->link($enterpriseValueChainRole->enterprise->name, ['controller' => 'Enterprises', 'action' => 'view', $enterpriseValueChainRole->enterprise->id]) : '' ?></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                <td><?= $enterpriseValueChainRole->has('value_chain_role') ? $this->Html->link($enterpriseValueChainRole->value_chain_role->name, ['controller' => 'ValueChainRoles', 'action' => 'view', $enterpriseValueChainRole->value_chain_role->id]) : '' ?></td>
+                                                                                                                                                                                                <!--begin::Action=-->
                         <td class="text-end">
                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
@@ -113,17 +90,17 @@
                                 
                                 
                                 <div class="menu-item px-3">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $enterprise->id],['class'=>'menu-link px-3']) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $enterpriseValueChainRole->value_chain_role_id],['class'=>'menu-link px-3']) ?>
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enterprise->id],['class'=>'menu-link px-3']) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enterpriseValueChainRole->value_chain_role_id],['class'=>'menu-link px-3']) ?>
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item badge-light-danger px-3   ">
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enterprise->id], ['class'=>'menu-link px-3','confirm' => __('Are you sure you want to delete # {0}?', $enterprise->id)]) ?>
+                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enterpriseValueChainRole->value_chain_role_id], ['class'=>'menu-link px-3','confirm' => __('Are you sure you want to delete # {0}?', $enterpriseValueChainRole->value_chain_role_id)]) ?>
                                 </div>
                                 <!--end::Menu item-->
                             </div>

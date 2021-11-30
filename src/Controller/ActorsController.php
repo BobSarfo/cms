@@ -49,6 +49,12 @@ class ActorsController extends AppController
      */
     public function add()
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin priviledges required to add new actors'));
+            return $this->redirect(['action' => 'index']);
+        }
         $actor = $this->Actors->newEmptyEntity();
         if ($this->request->is('post')) {
             $actor = $this->Actors->patchEntity($actor, $this->request->getData());
@@ -80,6 +86,12 @@ class ActorsController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin priviledges required to edit'));
+            return $this->redirect(['action' => 'index']);
+        }
         $actor = $this->Actors->get($id, [
             'contain' => ['Commodities', 'Enterprises', 'Organisations', 'ValueChainRoles'],
         ]);
@@ -112,7 +124,13 @@ class ActorsController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
-    {
+    {   
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role!=='super'){            
+            $this->Flash->error(__('Super priviledges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $actor = $this->Actors->get($id);
         if ($this->Actors->delete($actor)) {

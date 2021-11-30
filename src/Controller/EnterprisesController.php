@@ -48,7 +48,12 @@ class EnterprisesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {
+    {   $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $enterprise = $this->Enterprises->newEmptyEntity();
         if ($this->request->is('post')) {
             $enterprise = $this->Enterprises->patchEntity($enterprise, $this->request->getData());
@@ -74,6 +79,12 @@ class EnterprisesController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $enterprise = $this->Enterprises->get($id, [
             'contain' => ['Actors'],
         ]);
@@ -101,6 +112,12 @@ class EnterprisesController extends AppController
      */
     public function delete($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role!=='super'){            
+            $this->Flash->error(__('Super privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $enterprise = $this->Enterprises->get($id);
         if ($this->Enterprises->delete($enterprise)) {
