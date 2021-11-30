@@ -45,46 +45,25 @@
                             <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
                             
                                 <tr class="border-bottom border-gray-200 text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                                                        <th class="min-w-125px"><?= __('Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Name') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Date Of Birth') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Sex Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Disability Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Sector Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Phone') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Other Phone') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Community Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Suburb') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Registed With RGD') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Registed With Assembly') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Production Scale Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Other Related Activity') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Additional Comments') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Created') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Modified') ?></th>
-                                                                        <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
+                                    <th class="min-w-125px"><?= __('#') ?></th>
+                                    <th class="min-w-125px"><?= __('Name') ?></th>
+                                    <th class="min-w-125px"><?= __('Date Of Birth') ?></th>                                    
+                                    <th class="min-w-125px"><?= __('Phone') ?></th>
+                                    <th class="min-w-125px"><?= __('Suburb') ?></th>
+                                    <th class="min-w-125px"><?= __('Other Related Activity') ?></th>
+                                    <th class="min-w-125px"><?= __('Additional Comments') ?></th>
+                                    <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>                           <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
                                 </tr>
+                                    <?php $i=0 ?>
                                 <?php foreach ($productionScale->actors as $actors) : ?>
                                 <tr>
-                                                                        <td><?= h($actors->id) ?></td>
-                                                                        <td><?= h($actors->name) ?></td>
-                                                                        <td><?= h($actors->date_of_birth) ?></td>
-                                                                        <td><?= h($actors->sex_id) ?></td>
-                                                                        <td><?= h($actors->disability_id) ?></td>
-                                                                        <td><?= h($actors->sector_id) ?></td>
-                                                                        <td><?= h($actors->phone) ?></td>
-                                                                        <td><?= h($actors->other_phone) ?></td>
-                                                                        <td><?= h($actors->community_id) ?></td>
-                                                                        <td><?= h($actors->suburb) ?></td>
-                                                                        <td><?= h($actors->registed_with_RGD) ?></td>
-                                                                        <td><?= h($actors->registed_with_Assembly) ?></td>
-                                                                        <td><?= h($actors->production_scale_id) ?></td>
-                                                                        <td><?= h($actors->other_related_activity) ?></td>
-                                                                        <td><?= h($actors->additional_comments) ?></td>
-                                                                        <td><?= h($actors->created) ?></td>
-                                                                        <td><?= h($actors->modified) ?></td>
-                                                                                                            <td class="text-end min-w-125px actions">
-                                        <!--begin::Action-->
+                                    <td><?= h(++$i) ?></td>
+                                    <td><?= h($actors->name) ?></td>
+                                    <td><?= h($actors->date_of_birth) ?></td>
+                                    <td><?= h($actors->phone) ?></td>
+                                    <td><?= h($actors->suburb) ?></td>
+                                    <td><?= h($actors->other_related_activity) ?></td>
+                                    <td><?= h($actors->additional_comments) ?></td>
                                         <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
                                             <span class="svg-icon svg-icon-3">
@@ -123,7 +102,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                                </div>
+            </div>
         </div>
     </div>
 </div>

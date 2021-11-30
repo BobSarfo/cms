@@ -46,6 +46,12 @@ class ProductionScalesController extends AppController
      */
     public function add()
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $productionScale = $this->ProductionScales->newEmptyEntity();
         if ($this->request->is('post')) {
             $productionScale = $this->ProductionScales->patchEntity($productionScale, $this->request->getData());
@@ -68,6 +74,12 @@ class ProductionScalesController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $productionScale = $this->ProductionScales->get($id, [
             'contain' => [],
         ]);
@@ -92,6 +104,12 @@ class ProductionScalesController extends AppController
      */
     public function delete($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->error(__('Super Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $productionScale = $this->ProductionScales->get($id);
         if ($this->ProductionScales->delete($productionScale)) {

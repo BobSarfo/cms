@@ -46,6 +46,12 @@ class SectorsController extends AppController
      */
     public function add()
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $sector = $this->Sectors->newEmptyEntity();
         if ($this->request->is('post')) {
             $sector = $this->Sectors->patchEntity($sector, $this->request->getData());
@@ -68,6 +74,12 @@ class SectorsController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $sector = $this->Sectors->get($id, [
             'contain' => [],
         ]);
@@ -92,6 +104,12 @@ class SectorsController extends AppController
      */
     public function delete($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Super Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $sector = $this->Sectors->get($id);
         if ($this->Sectors->delete($sector)) {

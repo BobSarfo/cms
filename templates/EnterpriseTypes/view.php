@@ -45,37 +45,24 @@
                             <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
                             
                                 <tr class="border-bottom border-gray-200 text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                                                        <th class="min-w-125px"><?= __('Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Name') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Enterprise Type Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Community Id') ?></th>
+                                                                        <th class="min-w-125px"><?= __('#') ?></th>
+                                                                        <th class="min-w-125px"><?= __('Name') ?></th>                                                                
                                                                         <th class="min-w-125px"><?= __('Suburb') ?></th>
+                                                                        <th class="min-w-125px"><?= __('Number Of Employees') ?></th>
                                                                         <th class="min-w-125px"><?= __('Date Of Establishment') ?></th>
                                                                         <th class="min-w-125px"><?= __('Phone') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Number Of Employees') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Email') ?></th>
-                                                                        <th class="min-w-125px"><?= __('RegistrationNo') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Created') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Modified') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Other Phone') ?></th>
+                                                                        
                                                                         <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
-                                </tr>
+                                </tr><?php $i=0?>
                                 <?php foreach ($enterpriseType->enterprises as $enterprises) : ?>
                                 <tr>
-                                                                        <td><?= h($enterprises->id) ?></td>
+                                                                        <td><?= h(++$i) ?></td>
                                                                         <td><?= h($enterprises->name) ?></td>
-                                                                        <td><?= h($enterprises->enterprise_type_id) ?></td>
-                                                                        <td><?= h($enterprises->community_id) ?></td>
                                                                         <td><?= h($enterprises->suburb) ?></td>
+                                                                        <td><?= h($enterprises->number_of_employees) ?></td>
                                                                         <td><?= h($enterprises->date_of_establishment) ?></td>
                                                                         <td><?= h($enterprises->phone) ?></td>
-                                                                        <td><?= h($enterprises->number_of_employees) ?></td>
-                                                                        <td><?= h($enterprises->email) ?></td>
-                                                                        <td><?= h($enterprises->registrationNo) ?></td>
-                                                                        <td><?= h($enterprises->created) ?></td>
-                                                                        <td><?= h($enterprises->modified) ?></td>
-                                                                        <td><?= h($enterprises->other_phone) ?></td>
-                                                                                                            <td class="text-end min-w-125px actions">
+                                                                        <td class="text-end min-w-125px actions">
                                         <!--begin::Action-->
                                         <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->

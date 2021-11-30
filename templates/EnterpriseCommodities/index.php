@@ -37,13 +37,7 @@
 					<!--begin::Export-->
 					<!--end::Export-->
 					<!--begin::Add subscription-->
-					<span class="svg-icon svg-icon-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
-                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
-                    </svg>
-                     <?= $this->Html->link(__('New Enterprise Commodity'), ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
-   					</span>
+					
 					<!--end::Add subscription-->
 				</div>
 				<!--end::Toolbar-->
@@ -66,46 +60,15 @@
                     <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                                 <th><?= $this->Paginator->sort('enterprise_id') ?></th>
                                                 <th><?= $this->Paginator->sort('commodity_id') ?></th>
-                                                <th class="actions text-end"><?= __('Actions') ?></th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 fw-bold">
                     <?php foreach ($enterpriseCommodities as $enterpriseCommodity): ?>
-                    <tr>
-                                                                                                                                                                                                <td><?= $enterpriseCommodity->has('enterprise') ? $this->Html->link($enterpriseCommodity->enterprise->name, ['controller' => 'Enterprises', 'action' => 'view', $enterpriseCommodity->enterprise->id]) : '' ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                <td><?= $enterpriseCommodity->has('commodity') ? $this->Html->link($enterpriseCommodity->commodity->name, ['controller' => 'Commodities', 'action' => 'view', $enterpriseCommodity->commodity->id]) : '' ?></td>
-                                                                                                                                                                                                <!--begin::Action=-->
-                        <td class="text-end">
-                            <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                            <span class="svg-icon svg-icon-5 m-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon--></a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-2" data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                
-                                
-                                <div class="menu-item px-3">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $enterpriseCommodity->commodity_id],['class'=>'menu-link px-3']) ?>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enterpriseCommodity->commodity_id],['class'=>'menu-link px-3']) ?>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item badge-light-danger px-3   ">
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enterpriseCommodity->commodity_id], ['class'=>'menu-link px-3','confirm' => __('Are you sure you want to delete # {0}?', $enterpriseCommodity->commodity_id)]) ?>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
-                        </td>
+                        <tr>
+                        <td><?= $enterpriseCommodity->has('enterprise') ? $this->Html->link($enterpriseCommodity->enterprise->name, ['controller' => 'Enterprises', 'action' => 'view', $enterpriseCommodity->enterprise->id]) : '' ?></td>
+                        <td><?= $enterpriseCommodity->has('commodity') ? $this->Html->link($enterpriseCommodity->commodity->name, ['controller' => 'Commodities', 'action' => 'view', $enterpriseCommodity->commodity->id]) : '' ?></td>
+                        <!--begin::Action=-->
+                        <
                         <!--end::Action=-->
                     </tr>
                     <?php endforeach; ?>

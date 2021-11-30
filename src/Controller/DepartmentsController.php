@@ -53,8 +53,8 @@ class DepartmentsController extends AppController
     {
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
-        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
-            $this->Flash->info(__('Admin privileges required'));
+        if ( $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Super Admin privileges required'));
             return $this->redirect(['action' => 'index']);
         }
         $department = $this->Departments->newEmptyEntity();
@@ -81,8 +81,8 @@ class DepartmentsController extends AppController
     {
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
-        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
-            $this->Flash->info(__('Admin privileges required'));
+        if ( $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Super Admin privileges required'));
             return $this->redirect(['action' => 'index']);
         }
         $department = $this->Departments->get($id, [
