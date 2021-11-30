@@ -94,8 +94,8 @@ class EnterprisesTable extends Table
             ->allowEmptyString('suburb');
 
         $validator
-            ->dateTime('date_of_establishment')
-            ->allowEmptyDateTime('date_of_establishment');
+            ->date('date_of_establishment')
+            ->allowEmptyDate('date_of_establishment');
 
         $validator
             ->scalar('phone')
@@ -120,6 +120,14 @@ class EnterprisesTable extends Table
             ->scalar('other_phone')
             ->maxLength('other_phone', 20)
             ->allowEmptyString('other_phone');
+
+        $validator
+            ->boolean('registed_with_RGD')
+            ->allowEmptyString('registed_with_RGD');
+
+        $validator
+            ->boolean('registed_with_Assembly')
+            ->allowEmptyString('registed_with_Assembly');
 
         return $validator;
     }

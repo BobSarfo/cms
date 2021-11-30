@@ -47,13 +47,6 @@
 					<!--end::Add subscription-->
 				</div>
 				<!--end::Toolbar-->
-				<!--begin::Group actions-->
-				<div class="d-flex justify-content-end align-items-center d-none" data-kt-subscription-table-toolbar="selected">
-					<div class="fw-bolder me-5">
-					<span class="me-2" data-kt-subscription-table-select="selected_count"></span>Selected</div>
-					<button type="button" class="btn btn-danger" data-kt-subscription-table-select="delete_selected">Delete Selected</button>
-				</div>
-				<!--end::Group actions-->
 			</div>
 			<!--end::Card toolbar-->
 		</div>
@@ -64,7 +57,7 @@
             <table class="table align-middle table-row-dashed fs-6 gy-2" id="kt_subscriptions_table">
                 <thead>
                     <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-                                                <th><?= $this->Paginator->sort('id') ?></th>
+                                                <th><?= $this->Paginator->sort('#') ?></th>
                                                 <th><?= $this->Paginator->sort('name') ?></th>
                                                 <th><?= $this->Paginator->sort('community_id') ?></th>
                                                 <th><?= $this->Paginator->sort('created') ?></th>
@@ -73,14 +66,15 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 fw-bold">
+                    <?php $i = 0?>
                     <?php foreach ($organisations as $organisation): ?>
                     <tr>
-                                                                                                                                                                                                                                                                                                                <td><?= $this->Number->format($organisation->id) ?></td>
-                                                                                                                                                                                                                                                                                                                                                                        <td><?= h($organisation->name) ?></td>
-                                                                                                                                                                                                                                                        <td><?= $organisation->has('community') ? $this->Html->link($organisation->community->name, ['controller' => 'Communities', 'action' => 'view', $organisation->community->id]) : '' ?></td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                <td><?= h($organisation->created) ?></td>
-                                                                                                                                                                                                                                                                                                                                                                        <td><?= h($organisation->modified) ?></td>
-                                                                                                                                        <!--begin::Action=-->
+                        <td><?= $this->Number->format(++$i) ?></td>
+                        <td><?= h($organisation->name) ?></td>
+                        <td><?= $organisation->has('community') ? $this->Html->link($organisation->community->name, ['controller' => 'Communities', 'action' => 'view', $organisation->community->id]) : '' ?></td>
+                        <td><?= h($organisation->created) ?></td>
+                        <td><?= h($organisation->modified) ?></td>
+<!--begin::Action=-->
                         <td class="text-end">
                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->

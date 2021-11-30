@@ -49,6 +49,12 @@ class OrganisationsController extends AppController
      */
     public function add()
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $organisation = $this->Organisations->newEmptyEntity();
         if ($this->request->is('post')) {
             $organisation = $this->Organisations->patchEntity($organisation, $this->request->getData());
@@ -74,6 +80,12 @@ class OrganisationsController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $organisation = $this->Organisations->get($id, [
             'contain' => ['Actors', 'Commodities'],
         ]);
@@ -101,6 +113,12 @@ class OrganisationsController extends AppController
      */
     public function delete($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role!=='super'){            
+            $this->Flash->error(__('Failed!. Super Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $organisation = $this->Organisations->get($id);
         if ($this->Organisations->delete($organisation)) {

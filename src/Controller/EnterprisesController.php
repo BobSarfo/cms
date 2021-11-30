@@ -48,7 +48,8 @@ class EnterprisesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {   $session=$this ->request->getSession();        
+    {
+        $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
         if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
             $this->Flash->info(__('Admin privileges required'));
@@ -114,8 +115,8 @@ class EnterprisesController extends AppController
     {
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
-        if ($loggedin_user_role!=='super'){            
-            $this->Flash->error(__('Super privileges required'));
+        if ($loggedin_user_role!=='super'){                       
+            $this->Flash->error(__('Failed!. Super Admin privileges required'));
             return $this->redirect(['action' => 'index']);
         }
         $this->request->allowMethod(['post', 'delete']);

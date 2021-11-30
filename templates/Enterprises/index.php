@@ -77,11 +77,13 @@
                                                 <th><?= $this->Paginator->sort('created') ?></th>
                                                 <th><?= $this->Paginator->sort('modified') ?></th>
                                                 <th><?= $this->Paginator->sort('other_phone') ?></th>
+                                                <th><?= $this->Paginator->sort('registed_with_RGD') ?></th>
+                                                <th><?= $this->Paginator->sort('registed_with_Assembly') ?></th>
                                                 <th class="actions text-end"><?= __('Actions') ?></th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 fw-bold">
-                    <?php $i=0?>
+                    <?php $i = 0?>
                     <?php foreach ($enterprises as $enterprise): ?>
                     <tr>
                         <td><?= $this->Number->format(++$i) ?></td>
@@ -97,6 +99,8 @@
                         <td><?= h($enterprise->created) ?></td>
                         <td><?= h($enterprise->modified) ?></td>
                         <td><?= h($enterprise->other_phone) ?></td>
+                        <td><?= h($enterprise->registed_with_RGD) ?></td>
+                        <td><?= h($enterprise->registed_with_Assembly) ?></td>
 <!--begin::Action=-->
                         <td class="text-end">
                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions

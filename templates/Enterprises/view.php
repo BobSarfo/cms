@@ -78,7 +78,15 @@
                         <th class="text-gray-400 "><?= __('Modified') ?></th>
                         <td class="text-gray-800"><?= h($enterprise->modified) ?></td>
                     </tr>
-                                                                                        </table>
+                                                                                                                    <tr>
+                        <th  class="text-gray-400 "><?= __('Registed With RGD') ?></th>
+                        <td  class="text-gray-800"><?= $enterprise->registed_with_RGD ? __('Yes') : __('No'); ?></td>
+                    </tr>
+                                            <tr>
+                        <th  class="text-gray-400 "><?= __('Registed With Assembly') ?></th>
+                        <td  class="text-gray-800"><?= $enterprise->registed_with_Assembly ? __('Yes') : __('No'); ?></td>
+                    </tr>
+                                                                </table>
                 </div>
                 </div>
                                                                                                                                         <div class="d-flex flex-wrap py-5">
@@ -95,26 +103,22 @@
                                                                         <th class="min-w-125px"><?= __('Phone') ?></th>
                                                                         <th class="min-w-125px"><?= __('Other Phone') ?></th>
                                                                         <th class="min-w-125px"><?= __('Suburb') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Registed With RGD') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Registed With Assembly') ?></th>
                                                                         <th class="min-w-125px"><?= __('Other Related Activity') ?></th>
                                                                         <th class="min-w-125px"><?= __('Additional Comments') ?></th>
                                                                         <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
                                 </tr>
-                                <?php $i = 0?>
+                                 <?php $i = 0?>
                                 <?php foreach ($enterprise->actors as $actors) : ?>
                                 <tr>
-                                    <td><?= h(++$i) ?></td>
-                                    <td><?= h($actors->name) ?></td>
-                                    <td><?= h($actors->date_of_birth) ?></td>
-                                    <td><?= h($actors->phone) ?></td>
-                                    <td><?= h($actors->other_phone) ?></td>
-                                    <td><?= h($actors->suburb) ?></td>
-                                    <td><?= h($actors->registed_with_RGD) ?></td>
-                                    <td><?= h($actors->registed_with_Assembly) ?></td>
-                                    <td><?= h($actors->other_related_activity) ?></td>
-                                    <td><?= h($actors->additional_comments) ?></td>
-                                    <td class="text-end min-w-125px actions">
+                                                                        <td><?= h(++$i) ?></td>
+                                                                        <td><?= h($actors->name) ?></td>
+                                                                        <td><?= h($actors->date_of_birth) ?></td>                                                                       
+                                                                        <td><?= h($actors->phone) ?></td>
+                                                                        <td><?= h($actors->other_phone) ?></td>
+                                                                        <td><?= h($actors->suburb) ?></td>
+                                                                        <td><?= h($actors->other_related_activity) ?></td>
+                                                                        <td><?= h($actors->additional_comments) ?></td>
+                                                                        <td class="text-end min-w-125px actions">
                                         <!--begin::Action-->
                                         <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -127,7 +131,7 @@
                                             <!--end::Svg Icon-->
                                         </a>
                                         <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-6 w-200px py-4" data-kt-menu="true" style="">
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-6 w-200px py-4" data-kt-menu="true" >
                                             <!--begin::Menu item-->
                                             
                                             <div class="menu-item px-3"> 
@@ -153,7 +157,7 @@
                             </table>
                         <?php endif; ?>
                     </div>
-                </div>
+                </div>                
             </div>
         </div>
     </div>

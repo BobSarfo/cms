@@ -30,7 +30,7 @@ class UsersController extends AppController
         $loggedin_user_role=$session->read('auth-role');
         
         if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
-            $this->Flash->info(__('Admin priviledges required to access all users'));
+            $this->Flash->info(__('Admin privileges required to access all users'));
             return $this->redirect(['action' => 'profile']);
         }
         $this->paginate = [
@@ -48,7 +48,7 @@ class UsersController extends AppController
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
         if ($loggedin_user_role!='super'){            
-            $this->Flash->info(__('Admin priviledges required to view user details'));
+            $this->Flash->info(__('Admin privileges required to view user details'));
             return $this->redirect(['action' => 'profile']);
         }
         $user = $this->Users->get($id, [
@@ -63,7 +63,7 @@ class UsersController extends AppController
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
         if ( $loggedin_user_role!='super'){            
-            $this->Flash->info(__('Admin priviledges required to access all users'));
+            $this->Flash->info(__('Super Admin privileges required to add new users'));
             return $this->redirect(['action' => 'index']);
         }
         $user = $this->Users->newEmptyEntity();
@@ -90,7 +90,7 @@ class UsersController extends AppController
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
         if ($loggedin_user_role!='super'){            
-            $this->Flash->info(__('Admin priviledges required to edit users'));
+            $this->Flash->info(__('Super Admin privileges required to edit users'));
             return $this->redirect(['action' => 'index']);
         }
         $user = $this->Users->get($id, [
@@ -115,7 +115,7 @@ class UsersController extends AppController
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
         if ($loggedin_user_role!='super'){            
-            $this->Flash->error(__('Admin priviledges required delete users'));
+            $this->Flash->error(__('Super Admin privileges required delete users'));
             return $this->redirect(['action' => 'index']);
         }
         $this->request->allowMethod(['post', 'delete']);

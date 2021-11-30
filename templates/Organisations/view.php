@@ -26,19 +26,14 @@
                     <!--begin::Row-->
                     <div class="table-responsive">
                 <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
-                                                                                <tr>
+                    <tr>
                         <th  class="text-gray-400 "><?= __('Name') ?></th>
                         <td  class="text-gray-800" ><?= h($organisation->name) ?></td>
                     </tr > 
-                                                                                                            <tr>
+                    <tr>
                         <th  class="text-gray-400 min-w-175px w-250px "><?= __('Community') ?></th>
                         <td  class="text-gray-800"><?= $organisation->has('community') ? $this->Html->link($organisation->community->name, ['controller' => 'Communities', 'action' => 'view', $organisation->community->id]) : '' ?></td>
-                    </tr>
-                                                                                                                                                                <tr>
-                        <th class="text-gray-400 "><?= __('Id') ?></th>
-                        <td class="text-gray-800"><?= $this->Number->format($organisation->id) ?></td>
-                    </tr>
-                                                                                                                    <tr>
+                    </tr>                                                                                                                    <tr>
                         <th class="text-gray-400 "><?= __('Created') ?></th>
                         <td class="text-gray-800"><?= h($organisation->created) ?></td>
                     </tr>
@@ -46,7 +41,7 @@
                         <th class="text-gray-400 "><?= __('Modified') ?></th>
                         <td class="text-gray-800"><?= h($organisation->modified) ?></td>
                     </tr>
-                                                                                        </table>
+                </table>
                 </div>
                 </div>
                                                                                                                                         <div class="d-flex flex-wrap py-5">
@@ -57,45 +52,27 @@
                             <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
                             
                                 <tr class="border-bottom border-gray-200 text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                                                        <th class="min-w-125px"><?= __('Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Name') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Date Of Birth') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Sex Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Disability Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Sector Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Phone') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Other Phone') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Community Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Suburb') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Registed With RGD') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Registed With Assembly') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Production Scale Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Other Related Activity') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Additional Comments') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Created') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Modified') ?></th>
-                                                                        <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
+                                    <th class="min-w-125px"><?= __('#') ?></th>
+                                    <th class="min-w-125px"><?= __('Name') ?></th>
+                                    <th class="min-w-125px"><?= __('Date Of Birth') ?></th>                                   
+                                    <th class="min-w-125px"><?= __('Phone') ?></th>
+                                    <th class="min-w-125px"><?= __('Suburb') ?></th>
+                                    <th class="min-w-125px"><?= __('Other Related Activity') ?></th>
+                                    <th class="min-w-125px"><?= __('Additional Comments') ?></th>
+                                    <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
                                 </tr>
+
+                                <?php $j = 0?>
                                 <?php foreach ($organisation->actors as $actors) : ?>
                                 <tr>
-                                                                        <td><?= h($actors->id) ?></td>
-                                                                        <td><?= h($actors->name) ?></td>
-                                                                        <td><?= h($actors->date_of_birth) ?></td>
-                                                                        <td><?= h($actors->sex_id) ?></td>
-                                                                        <td><?= h($actors->disability_id) ?></td>
-                                                                        <td><?= h($actors->sector_id) ?></td>
-                                                                        <td><?= h($actors->phone) ?></td>
-                                                                        <td><?= h($actors->other_phone) ?></td>
-                                                                        <td><?= h($actors->community_id) ?></td>
-                                                                        <td><?= h($actors->suburb) ?></td>
-                                                                        <td><?= h($actors->registed_with_RGD) ?></td>
-                                                                        <td><?= h($actors->registed_with_Assembly) ?></td>
-                                                                        <td><?= h($actors->production_scale_id) ?></td>
-                                                                        <td><?= h($actors->other_related_activity) ?></td>
-                                                                        <td><?= h($actors->additional_comments) ?></td>
-                                                                        <td><?= h($actors->created) ?></td>
-                                                                        <td><?= h($actors->modified) ?></td>
-                                                                                                            <td class="text-end min-w-125px actions">
+                                    <td><?= h(++$j) ?></td>
+                                    <td><?= h($actors->name) ?></td>
+                                    <td><?= h($actors->date_of_birth) ?></td>
+                                    <td><?= h($actors->phone) ?></td>
+                                    <td><?= h($actors->suburb) ?></td>
+                                    <td><?= h($actors->other_related_activity) ?></td>
+                                    <td><?= h($actors->additional_comments) ?></td>
+                                    <td class="text-end min-w-125px actions">
                                         <!--begin::Action-->
                                         <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -108,7 +85,7 @@
                                             <!--end::Svg Icon-->
                                         </a>
                                         <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-6 w-200px py-4" data-kt-menu="true" style="">
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-6 w-200px py-4" data-kt-menu="true" >
                                             <!--begin::Menu item-->
                                             
                                             <div class="menu-item px-3"> 
@@ -135,7 +112,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                                                                                                <div class="d-flex flex-wrap py-5">
+                <div class="d-flex flex-wrap py-5">
                     <!--begin::Row-->
                     <div class="table-responsive">
                         <h5 class="mb-4"><?= __('Related Commodities') ?></h5>
@@ -143,15 +120,16 @@
                             <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
                             
                                 <tr class="border-bottom border-gray-200 text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                                                        <th class="min-w-125px"><?= __('Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Name') ?></th>
-                                                                        <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
+                                    <th class="min-w-125px"><?= __('#') ?></th>
+                                    <th class="min-w-125px"><?= __('Name') ?></th>
+                                    <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
                                 </tr>
+                                <?php $k=0?>
                                 <?php foreach ($organisation->commodities as $commodities) : ?>
                                 <tr>
-                                                                        <td><?= h($commodities->id) ?></td>
-                                                                        <td><?= h($commodities->name) ?></td>
-                                                                                                            <td class="text-end min-w-125px actions">
+                                    <td><?= h(++$k) ?></td>
+                                    <td><?= h($commodities->name) ?></td>
+                                <td class="text-end min-w-125px actions">
                                         <!--begin::Action-->
                                         <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -163,26 +141,6 @@
                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-6 w-200px py-4" data-kt-menu="true" style="">
-                                            <!--begin::Menu item-->
-                                            
-                                            <div class="menu-item px-3"> 
-                                                <?= $this->Html->link(__('View'), ['controller' => 'Commodities', 'action' => 'view', $commodities->id]) ?>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <?= $this->Html->link(__('Edit'), ['controller' => 'Commodities', 'action' => 'edit', $commodities->id]) ?>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Commodities', 'action' => 'delete', $commodities->id], ['confirm' => __('Are you sure you want to delete # {0}?', $commodities->id)]) ?>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu-->
                                         <!--end::Action-->
                                     </td>
                                 </tr>
@@ -191,7 +149,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                                </div>
+            </div>
         </div>
     </div>
 </div>

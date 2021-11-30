@@ -127,8 +127,8 @@ class ActorsController extends AppController
     {   
         $session=$this ->request->getSession();        
         $loggedin_user_role=$session->read('auth-role');
-        if ($loggedin_user_role!=='super'){            
-            $this->Flash->error(__('Super priviledges required'));
+        if ($loggedin_user_role!=='super'){                       
+            $this->Flash->error(__('Failed!. Super Admin privileges required'));
             return $this->redirect(['action' => 'index']);
         }
         $this->request->allowMethod(['post', 'delete']);

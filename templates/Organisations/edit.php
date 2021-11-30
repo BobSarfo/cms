@@ -18,7 +18,7 @@
                         <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $organisation->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $organisation->id), 'class' => 'btn btn-light-primary mx-2']
+                ['confirm' => __('Are you sure you want to delete # {0}?', $organisation->id), 'class' => 'btn btn-light-danger mx-2']
             ) ?>
                         <?= $this->Html->link(__('List Organisations'), ['action' => 'index'], ['class' => 'btn btn-light-primary mx-2']) ?>
         </div>

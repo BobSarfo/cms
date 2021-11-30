@@ -13,7 +13,7 @@ use Cake\ORM\Entity;
  * @property int|null $enterprise_type_id
  * @property int|null $community_id
  * @property string|null $suburb
- * @property \Cake\I18n\FrozenTime|null $date_of_establishment
+ * @property \Cake\I18n\FrozenDate|null $date_of_establishment
  * @property string|null $phone
  * @property int|null $number_of_employees
  * @property string|null $email
@@ -21,6 +21,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property string|null $other_phone
+ * @property bool|null $registed_with_RGD
+ * @property bool|null $registed_with_Assembly
  *
  * @property \App\Model\Entity\EnterpriseType $enterprise_type
  * @property \App\Model\Entity\Community $community
@@ -52,6 +54,8 @@ class Enterprise extends Entity
         'created' => true,
         'modified' => true,
         'other_phone' => true,
+        'registed_with_RGD' => true,
+        'registed_with_Assembly' => true,
         'enterprise_type' => true,
         'community' => true,
         'enterprise_commodities' => true,
