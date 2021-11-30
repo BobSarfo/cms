@@ -14,7 +14,6 @@
             </div>
             <div class="card-toolbar"> 
                 <?= $this->Html->link(__('Edit Role'), ['action' => 'edit', $role->id], ['class' => 'btn btn-light-primary mx-2']) ?>
-                <?= $this->Form->postLink(__('Delete Role'), ['action' => 'delete', $role->id], ['confirm' => __('Are you sure you want to delete # {0}?', $role->id), 'class' => ' btn btn-light-danger mx-2']) ?>
                 <?= $this->Html->link(__('List Roles'), ['action' => 'index'], ['class' => 'btn btn-light-primary mx-2']) ?>
                 <?= $this->Html->link(__('New Role'), ['action' => 'add'], ['class' => 'btn btn-light-primary mx-2']) ?>
                             </div>
@@ -26,18 +25,13 @@
                     <!--begin::Row-->
                     <div class="table-responsive">
                 <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
-                                                                                <tr>
+                    <tr>
                         <th  class="text-gray-400 "><?= __('Name') ?></th>
                         <td  class="text-gray-800" ><?= h($role->name) ?></td>
-                    </tr > 
-                                                                                                                                                                    <tr>
-                        <th class="text-gray-400 "><?= __('Id') ?></th>
-                        <td class="text-gray-800"><?= $this->Number->format($role->id) ?></td>
-                    </tr>
-                                                                                                                </table>
+                </table>
                 </div>
                 </div>
-                                                                                                                                        <div class="d-flex flex-wrap py-5">
+                    <div class="d-flex flex-wrap py-5">
                     <!--begin::Row-->
                     <div class="table-responsive">
                         <h5 class="mb-4"><?= __('Related Users') ?></h5>
@@ -48,10 +42,6 @@
                                                                         <th class="min-w-125px"><?= __('Id') ?></th>
                                                                         <th class="min-w-125px"><?= __('Name') ?></th>
                                                                         <th class="min-w-125px"><?= __('Username') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Password') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Isreset') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Department Id') ?></th>
-                                                                        <th class="min-w-125px"><?= __('Role Id') ?></th>
                                                                         <th class="min-w-125px"><?= __('Created') ?></th>
                                                                         <th class="min-w-125px"><?= __('Modified') ?></th>
                                                                         <th class="text-end min-w-125px actions"><?= __('Actions') ?></th>
@@ -61,10 +51,6 @@
                                                                         <td><?= h($users->id) ?></td>
                                                                         <td><?= h($users->name) ?></td>
                                                                         <td><?= h($users->username) ?></td>
-                                                                        <td><?= h($users->password) ?></td>
-                                                                        <td><?= h($users->isreset) ?></td>
-                                                                        <td><?= h($users->department_id) ?></td>
-                                                                        <td><?= h($users->role_id) ?></td>
                                                                         <td><?= h($users->created) ?></td>
                                                                         <td><?= h($users->modified) ?></td>
                                                                                                             <td class="text-end min-w-125px actions">
@@ -91,12 +77,6 @@
                                             <div class="menu-item px-3">
                                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $users->id]) ?>
                                             </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Users', 'action' => 'delete', $users->id], ['confirm' => __('Are you sure you want to delete # {0}?', $users->id)]) ?>
-                                            </div>
-                                            <!--end::Menu item-->
                                         </div>
                                         <!--end::Menu-->
                                         <!--end::Action-->

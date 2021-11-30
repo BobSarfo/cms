@@ -100,26 +100,26 @@
                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-2" data-kt-menu="true">
                                 <!--begin::Menu item-->
                                 
-                                
-                                <div class="menu-item px-3">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id],['class'=>'menu-link px-3']) ?>
-                                </div>
+                                <?php if(strcasecmp($loggedin_user_role,'super')===0):?>
+                                    <?php echo ($loggedin_user_role=='as') ?>
+                                    <div class="menu-item px-3">
+                                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id],['class'=>'menu-link px-3']) ?>
+                                    </div>
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id],['class'=>'menu-link px-3']) ?>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <?= $this->Html->link(__('Reset'), ['action' => 'passreset', $user->id],['class'=>'menu-link px-3']) ?>
+                                    </div>
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item badge-light-danger px-3   ">
+                                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['class'=>'menu-link px-3','confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                                    </div>
                                 <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <?php if (true): ?>
-                                <div class="menu-item px-3">
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id],['class'=>'menu-link px-3']) ?>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <?= $this->Html->link(__('Reset'), ['action' => 'passreset', $user->id],['class'=>'menu-link px-3']) ?>
-                                </div>
                                 <?php endif ?>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item badge-light-danger px-3   ">
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['class'=>'menu-link px-3','confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
-                                </div>
-                                <!--end::Menu item-->
                             </div>
                             <!--end::Menu-->
                         </td>

@@ -23,10 +23,13 @@ class UsersController extends AppController
         $this->Authentication->addUnauthenticatedActions(['login','reset']);
     }
  
+   
     public function index()
     {
-        $loggedin_user_role= $this->currentLoggedinUserRole();
-        if ($loggedin_user_role!='admin'){            
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
             $this->Flash->info(__('Admin priviledges required to access all users'));
             return $this->redirect(['action' => 'profile']);
         }
@@ -35,13 +38,16 @@ class UsersController extends AppController
         ];
         $users = $this->paginate($this->Users);
 
-        $this->set(compact('users'));
+        $this->set(compact('users','loggedin_user_role'));
+     
     }
 
     public function view($id = null)
     {
-        $loggedin_user_role= $this->currentLoggedinUserRole();
-        if ($loggedin_user_role!='admin'){            
+        
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role!='super'){            
             $this->Flash->info(__('Admin priviledges required to access all users'));
             return $this->redirect(['action' => 'profile']);
         }
@@ -54,8 +60,9 @@ class UsersController extends AppController
 
     public function add()
     {
-        $loggedin_user_role= $this->currentLoggedinUserRole();
-        if ($loggedin_user_role!='admin'){            
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ( $loggedin_user_role!='super'){            
             $this->Flash->info(__('Admin priviledges required to access all users'));
             return $this->redirect(['action' => 'profile']);
         }
@@ -80,8 +87,9 @@ class UsersController extends AppController
 
     public function edit($id = null)
     {
-        $loggedin_user_role= $this->currentLoggedinUserRole();
-        if ($loggedin_user_role!='admin'){            
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role!='super'){            
             $this->Flash->info(__('Admin priviledges required to access all users'));
             return $this->redirect(['action' => 'profile']);
         }
@@ -104,8 +112,9 @@ class UsersController extends AppController
 
     public function delete($id = null)
     {
-        $loggedin_user_role= $this->currentLoggedinUserRole();
-        if ($loggedin_user_role!='admin'){            
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role!='super'){            
             $this->Flash->info(__('Admin priviledges required to access all users'));
             return $this->redirect(['action' => 'profile']);
         }
@@ -129,18 +138,23 @@ class UsersController extends AppController
         if ($result->isValid()) {
             // redirect to /articles after login success
             $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'Dashboard',
-                'action' => 'index',
+                // 'controller' => 'Dashboard',
+                'action' => 'profile',
             ]);
             
-            $loggedin_user_role= $this->currentLoggedinUserRole();
-            $session = $this->request->getSession();
             $loggedin_user=$this->Authentication->getIdentity()->getOriginalData();
-          
+            
+            $id = $loggedin_user['role_id'] | 0;
+            $query = $this->getTableLocator()->get('Roles')
+                                        ->find()
+                                        ->select(['name'])
+                                        ->where(['id =' => $id])->toList() ;
+
+            $loggedin_user_role =  trim(strtolower($query[0]->name));
+                        
+            $session = $this->request->getSession();
             $session->write("auth-user",$loggedin_user);
             $session->write("auth-role",$loggedin_user_role);
-
-
             return $this->redirect($redirect);
         }
         // display error if user submitted and authentication failed

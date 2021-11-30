@@ -53,16 +53,5 @@ class AppController extends Controller
         
         $this->loadComponent('Authentication.Authentication');
     }
-    public function currentLoggedinUserRole(){
-        $session=$this ->request->getSession();
-        $login_user_details= $session->read('auth-user');
-        $id = $login_user_details['role_id'];
-
-        $query = $this->getTableLocator()->get('Roles')
-                                        ->find()
-                                        ->select(['name'])
-                                        ->where(['id =' => $id])->toList();
-
-        return  trim(strtolower($query[0]->name));
-    }
+    
 }

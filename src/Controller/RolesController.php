@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Event\EventInterface;
+
 /**
  * Roles Controller
  *
@@ -16,6 +18,18 @@ class RolesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+    public function beforeFilter(EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // Configure the login action to not require authentication, preventing
+        // the infinite redirect loop issue
+        $this->Authentication->addUnauthenticatedActions(['login','reset']);
+        $loggedin_user_role= $this->currentLoggedinUserRole();
+        if ($loggedin_user_role!='super'){            
+            $this->Flash->info(__('Super Admin priviledges required to access all users'));
+            return $this->redirect(['controller'=>'users','action' => 'profile']);
+        }
+    }
     public function index()
     {
         $roles = $this->paginate($this->Roles);

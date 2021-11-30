@@ -11,13 +11,7 @@
             <legend  class="fw-bolder"><?= __('Edit Role') ?></legend>
         </div>
         <div class="card-toolbar"> 
-
-                        <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $role->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $role->id), 'class' => 'btn btn-light-primary mx-2']
-            ) ?>
-                        <?= $this->Html->link(__('List Roles'), ['action' => 'index'], ['class' => 'btn btn-light-primary mx-2']) ?>
+            <?= $this->Html->link(__('List Roles'), ['action' => 'index'], ['class' => 'btn btn-light-primary mx-2']) ?>
         </div>
     </div>
 

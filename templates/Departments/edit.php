@@ -11,13 +11,7 @@
             <legend  class="fw-bolder"><?= __('Edit Department') ?></legend>
         </div>
         <div class="card-toolbar"> 
-
-                        <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $department->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $department->id), 'class' => 'btn btn-light-primary mx-2']
-            ) ?>
-                        <?= $this->Html->link(__('List Departments'), ['action' => 'index'], ['class' => 'btn btn-light-primary mx-2']) ?>
+            <?= $this->Html->link(__('List Departments'), ['action' => 'index'], ['class' => 'btn btn-light-primary mx-2']) ?>
         </div>
     </div>
 

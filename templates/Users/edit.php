@@ -13,12 +13,6 @@
             <legend  class="fw-bolder"><?= __('Edit User') ?></legend>
         </div>
         <div class="card-toolbar"> 
-
-                        <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id), 'class' => 'btn btn-light-primary mx-2']
-            ) ?>
             <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'btn btn-light-primary mx-2']) ?>
         </div>
     </div>

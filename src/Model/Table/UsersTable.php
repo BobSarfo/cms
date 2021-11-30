@@ -87,8 +87,6 @@ class UsersTable extends Table
             ->maxLength('password', 100)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
-        // $validator
-        //     ->sameAs("password","retype_password","Passwords do not match");
 
         $validator
             ->boolean('isreset')

@@ -382,7 +382,7 @@ $cakeDescription = 'Shama District';
 														<!--begin::Username-->
 														<div class="d-flex flex-column">
 															<div class="fw-bolder d-flex align-items-center fs-5">
-																<?php																	
+																<?php													
 																	$session=$this ->request->getSession();
 																	$login_user_details= $session->read('auth-user');
 																	echo $login_user_details['name'];
