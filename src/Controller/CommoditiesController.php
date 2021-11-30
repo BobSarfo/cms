@@ -46,6 +46,12 @@ class CommoditiesController extends AppController
      */
     public function add()
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $commodity = $this->Commodities->newEmptyEntity();
         if ($this->request->is('post')) {
             $commodity = $this->Commodities->patchEntity($commodity, $this->request->getData());
@@ -70,6 +76,12 @@ class CommoditiesController extends AppController
      */
     public function edit($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ($loggedin_user_role !== 'admin' &&  $loggedin_user_role!=='super'){            
+            $this->Flash->info(__('Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $commodity = $this->Commodities->get($id, [
             'contain' => ['Actors', 'Organisations'],
         ]);
@@ -96,6 +108,12 @@ class CommoditiesController extends AppController
      */
     public function delete($id = null)
     {
+        $session=$this ->request->getSession();        
+        $loggedin_user_role=$session->read('auth-role');
+        if ( $loggedin_user_role!=='super'){            
+            $this->Flash->error(__('Super Admin privileges required'));
+            return $this->redirect(['action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $commodity = $this->Commodities->get($id);
         if ($this->Commodities->delete($commodity)) {
